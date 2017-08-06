@@ -1,9 +1,12 @@
+const path = require('path')
+const glob = require('glob')
 const postcssCssNext = require('postcss-cssnext')
 const postcssUrl = require('postcss-url')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const PurifyCSSPlugin = require('purifycss-webpack')
 
 // Disables or enables certain functionality based on node environment variable
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -25,6 +28,10 @@ const sync = new BrowserSyncPlugin({
   proxy: 'http://localhost:3100/'
 }, {
   reload: true
+})
+const purify = new PurifyCSSPlugin({
+  paths: glob.sync(path.join(__dirname, '*.html')),
+  minimize: !isDevelopment
 })
 
 module.exports = {
@@ -86,6 +93,7 @@ module.exports = {
     clean,
     extract,
     html,
+    purify,
     sync
   ],
   stats: isDevelopment ? 'minimal' : 'normal'
