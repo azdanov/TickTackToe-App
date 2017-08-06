@@ -1,0 +1,91 @@
+@import "~minireset.css/minireset.sass";
+@import "~bulma/sass/utilities/all";
+@import "~bulma/sass/base/generic";
+@import "~bulma/sass/base/helpers";
+@import "~bulma/sass/elements/title";
+@import "~bulma/sass/elements/button";
+@import "style.css";
+
+body {
+  font-family: monospace;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#choice {
+  position: absolute;
+  top: 50%;
+  font-size: 2.5rem;
+
+  span {
+    font-size: 5rem;
+    cursor: pointer;
+  }
+}
+
+#info {
+  position: absolute;
+  top: calc(50% - 240px);
+  font-size: 2.5rem;
+}
+
+#score {
+  position: absolute;
+  top: calc(50% + 190px);
+  width: 300px;
+
+  .subtitle,
+  .title {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+h1 {
+  font-size: 0;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+  overflow: hidden;
+  position: absolute !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.board {
+  margin: auto;
+  cursor: pointer;
+}
+
+.board td {
+  width: 100px;
+  height: 100px;
+  position: relative;
+
+  &[class^="icon-"] {
+    font-size: 4rem;
+    line-height: 6rem;
+    text-align: center;
+  }
+}
+
+/* Vertical */
+.board tr td:nth-child(even) {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+/* Horizontal */
+.board tr:nth-child(2) td {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.is-unselectable {
+  cursor: default;
+}
